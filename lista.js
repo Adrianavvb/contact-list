@@ -100,6 +100,28 @@ function eliminarContacto(id) {
   }
 }
 
+//actualizar contacto
+
+function actualizarContacto(id, nuevosDatos) {
+  let indice = -1;
+  for (let i = 0; i < listaContactos.length; i++) {
+    if (id === listaContactos[i].id) {
+      indice = i;
+      break;
+    }
+  }
+
+  if (indice >= 0) {
+    let listaActualizada = Object.assign(listaContactos[indice], nuevosDatos);
+    console.log(
+      `El contacto ${listaContactos[indice].nombre} con id ${id} ha sido actualizado`
+    );
+    console.log("Contacto Actualizado...", listaActualizada);
+  } else {
+    console.log("El contacto no existe...");
+  }
+}
+
 //Imprimir Contacto
 
 function imprimirContactos() {
@@ -110,6 +132,8 @@ function imprimirContactos() {
 imprimirContactos();
 
 eliminarContacto(1);
-
+actualizarContacto(3, {
+  ubicaciones: { ciudad: "colombia", direccion: "bogota" },
+});
 console.log("Lista de Contactos Actualizada!");
 imprimirContactos();
